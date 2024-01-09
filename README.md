@@ -1,5 +1,7 @@
 # friendly-giggle
 Info about let const and var and how does it work
+
+
 Var:
 Var is use to declare a variable in globally-scopped or locally scopped
 
