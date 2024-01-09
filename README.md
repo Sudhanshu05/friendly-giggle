@@ -4,16 +4,18 @@ Info about let const and var and how does it work
 
 Var:
 Var is use to declare a variable in globally-scopped or locally scopped
+  Case :1
 
-Case :1
+  In this code snippet:
+  
+    var x = 10;
+      if( x > 0)
+      {
+        var x = 5
+        console.log(x) //Output = 5
+      }  
+    console.log(x) //Output = 5
 
-var x = 10;
-if( x > 0){
-  var x = 5
-  console.log(x) //Output = 5
-}
-
-console.log(x) //Output = 5
 The variable x is initially declared and assigned the value of 10 outside the if block. 
 Inside the if block, another variable with the same name x is declared and assigned the value 5.
 However, because var does not have block-level scoping in JavaScript, the second declaration of x 
@@ -28,13 +30,16 @@ the inner x would be a separate variable with its own scope.
 Case :2
 
 In this code snippet:
-  var x = 0;
-  function f(){
-  var x = y = 1;
-  console.log(x, y); // Output: 1, 1
-  }
-  f();
-  console.log(x, y); // Output: 0, 1
+
+    var x = 0;
+    function f()
+      {
+        var x = y = 1;
+        console.log(x, y); // Output: 1, 1
+      }
+    f();
+    console.log(x, y); // Output: 0, 1
+  
 
   Let's break down what happens:
   1. Inside the function `f`, there is a variable declaration `var x = y = 1;`. 
@@ -52,29 +57,30 @@ In this code snippet:
 
 Case :3
 Let's analyze the code step by step:
-  var x = 1;
-  function a(){
-      var y = 2;
-      console.log(x, y); // Output: 1 2
 
-      function b(){
-          x = 3;
-          y = 4;
-          z = 5;
-      }
+      var x = 1;
+      function a(){
+          var y = 2;
+          console.log(x, y); // Output: 1 2
+    
+            function b(){
+                x = 3;
+                y = 4;
+                z = 5;
+            }
+      
+            b();
+      
+            console.log(x, y, z); // Output: 3 4 5
+        }
+    
+      a();
+    
+      console.log(x, z); // Output: 3 5
+      console.log("y", typeof(y)); // Output: undefined
+      console.log("x", typeof(x)); // Output: number
+      console.log("z", typeof(z)); // Output: number
 
-      b();
-
-      console.log(x, y, z); // Output: 3 4 5
-  }
-
-  a();
-
-  console.log(x, z); // Output: 3 5
-  console.log("y", typeof(y)); // Output: undefined
-  console.log("x", typeof(x)); // Output: number
-  console.log("z", typeof(z)); // Output: number
-```
 Here's the breakdown:
 
   1. Initial global variables: `x` is assigned `1`.
